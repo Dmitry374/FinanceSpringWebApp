@@ -5,6 +5,10 @@ import com.dima.financeapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class UserService {
 
@@ -15,12 +19,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public List<User> getUsers() {
+        return StreamSupport
+                .stream(userRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
     }
 
-    public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
+    public User addUser(User user) {
+        return userRepository.save(user);
     }
 
     public User getUserByEmailAndPassword(String email, String password) {
