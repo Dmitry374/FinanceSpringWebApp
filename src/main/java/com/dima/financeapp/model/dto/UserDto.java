@@ -1,7 +1,12 @@
 package com.dima.financeapp.model.dto;
 
 import com.dima.financeapp.model.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class UserDto {
@@ -13,6 +18,8 @@ public class UserDto {
     private String password;
     private String datebirth;
     private String gender;
+    @JsonProperty("bills")
+    private List<BillDto> billsDto = new ArrayList<>();
 
     public static UserDto from(User user) {
         UserDto userDto = new UserDto();
@@ -23,6 +30,7 @@ public class UserDto {
         userDto.setPassword(user.getPassword());
         userDto.setDatebirth(user.getDatebirth());
         userDto.setGender(user.getGender());
+        userDto.setBillsDto(user.getBills().stream().map(BillDto::from).collect(Collectors.toList()));
         return userDto;
     }
 }

@@ -4,6 +4,8 @@ import com.dima.financeapp.model.dto.UserDto;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -19,6 +21,18 @@ public class User {
     private String password;
     private String datebirth;
     private String gender;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Bill> bills = new ArrayList<>();
+
+    public void addBill(Bill bill) {
+        bills.add(bill);
+    }
+
+    public void removeBill(Bill bill) {
+        bills.remove(bill);
+    }
 
     public static User from(UserDto userDto) {
         User user = new User();
