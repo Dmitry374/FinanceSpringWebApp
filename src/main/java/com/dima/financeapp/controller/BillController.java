@@ -24,4 +24,17 @@ public class BillController {
         Bill bill = billService.addBill(Bill.from(billDto), email);
         return new ResponseEntity<>(BillDto.from(bill), HttpStatus.OK);
     }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<BillDto> deleteBill(@PathVariable final Long id) {
+        Bill bill = billService.deleteBill(id);
+        return new ResponseEntity<>(BillDto.from(bill), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<BillDto> editBill(@PathVariable final Long id,
+                                            @RequestBody final BillDto billDto) {
+        Bill bill = billService.editBill(id, Bill.from(billDto));
+        return new ResponseEntity<>(BillDto.from(bill), HttpStatus.OK);
+    }
 }

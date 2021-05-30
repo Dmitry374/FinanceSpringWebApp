@@ -3,6 +3,7 @@ package com.dima.financeapp.service;
 import com.dima.financeapp.model.Bill;
 import com.dima.financeapp.model.User;
 import com.dima.financeapp.model.exception.BillIsAlreadyAssignedException;
+import com.dima.financeapp.model.exception.BillNotFoundException;
 import com.dima.financeapp.repository.BillRepository;
 import com.dima.financeapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,26 @@ public class BillService {
         }
         user.addBill(bill);
         return bill;
+    }
+
+    @Transactional
+    public Bill deleteBill(Long id) {
+        Bill bill = getBill(id);
+        billRepository.delete(bill);
+        return bill;
+    }
+
+    @Transactional
+    public Bill editBill(Long id, Bill bill) {
+        Bill billToEdit = getBill(id);
+        billToEdit.setName(bill.getName());
+        billToEdit.setAmount(bill.getAmount());
+        billToEdit.setColor(bill.getColor());
+        return billToEdit;
+    }
+
+    public Bill getBill(Long id) {
+        return billRepository.findById(id).orElseThrow(() ->
+                new BillNotFoundException(id));
     }
 }
