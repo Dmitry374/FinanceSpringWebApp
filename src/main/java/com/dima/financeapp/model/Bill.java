@@ -1,6 +1,7 @@
 package com.dima.financeapp.model;
 
 import com.dima.financeapp.model.dto.BillDto;
+import com.dima.financeapp.model.request.BillWithEmailRequest;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -37,7 +38,15 @@ public class Bill {
         Bill bill = new Bill();
         bill.setName(billDto.getName());
         bill.setAmount(billDto.getAmount());
-        bill.setColor(bill.getColor());
+        bill.setColor(billDto.getColor());
+        return bill;
+    }
+
+    public static Bill from(BillWithEmailRequest billWithEmailRequest) {
+        Bill bill = new Bill();
+        bill.setName(billWithEmailRequest.getName());
+        bill.setAmount(billWithEmailRequest.getAmount());
+        bill.setColor(billWithEmailRequest.getColor());
         return bill;
     }
 }

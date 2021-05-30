@@ -2,6 +2,7 @@ package com.dima.financeapp.controller;
 
 import com.dima.financeapp.model.Bill;
 import com.dima.financeapp.model.dto.BillDto;
+import com.dima.financeapp.model.request.BillWithEmailRequest;
 import com.dima.financeapp.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class BillController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<BillDto> addBill(@RequestBody final BillDto billDto, @RequestParam String email) {
-        Bill bill = billService.addBill(Bill.from(billDto), email);
+    public ResponseEntity<BillDto> addBill(@RequestBody final BillWithEmailRequest billWithEmailRequest) {
+        Bill bill = billService.addBill(Bill.from(billWithEmailRequest), billWithEmailRequest.getEmail());
         return new ResponseEntity<>(BillDto.from(bill), HttpStatus.OK);
     }
 
