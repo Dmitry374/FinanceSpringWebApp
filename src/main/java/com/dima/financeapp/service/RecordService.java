@@ -1,5 +1,6 @@
 package com.dima.financeapp.service;
 
+import com.dima.financeapp.common.Constants;
 import com.dima.financeapp.model.Bill;
 import com.dima.financeapp.model.Record;
 import com.dima.financeapp.model.exception.RecordNotFoundException;
@@ -25,6 +26,16 @@ public class RecordService {
     public Record addRecord(Record newRecord, Long billId) {
         Record record = recordRepository.save(newRecord);
         Bill bill = billService.getBill(billId);
+
+        switch (newRecord.getType()) {
+            case Constants.RECORD_TYPE_INCOME:
+                bill.setAmount(bill.getAmount() + record.getSum());
+                break;
+            case Constants.RECORD_TYPE_CONSUMPTION:
+                bill.setAmount(bill.getAmount() - record.getSum());
+                break;
+        }
+
         bill.addRecord(record);
         return record;
     }
