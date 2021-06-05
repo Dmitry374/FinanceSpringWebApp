@@ -20,6 +20,12 @@ public class RecordController {
         this.recordService = recordService;
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<RecordDto> getRecord(@PathVariable final Long id) {
+        Record record = recordService.getRecord(id);
+        return new ResponseEntity<>(RecordDto.from(record), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<RecordDto> addRecord(@RequestBody RecordWithBillId recordWithBillId) {
         Record record = recordService.addRecord(Record.from(recordWithBillId), recordWithBillId.getBillId());

@@ -20,6 +20,12 @@ public class BillController {
         this.billService = billService;
     }
 
+    @GetMapping(value = "{id}")
+    public ResponseEntity<BillDto> getBill(@PathVariable final Long id) {
+        Bill bill = billService.getBill(id);
+        return new ResponseEntity<>(BillDto.from(bill), HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<BillDto> addBill(@RequestBody final BillWithEmailRequest billWithEmailRequest) {
         Bill bill = billService.addBill(Bill.from(billWithEmailRequest), billWithEmailRequest.getEmail());

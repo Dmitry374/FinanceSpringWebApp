@@ -23,6 +23,7 @@ public class Record {
     private int color;
     private int icon;
     private LocalDateTime date;
+    @Transient
     @ManyToOne
     private Bill bill;
 

@@ -20,6 +20,7 @@ public class Bill {
     private float amount;
     private int color;
     @ManyToOne
+    @Transient
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)

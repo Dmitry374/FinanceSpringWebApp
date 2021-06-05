@@ -1,6 +1,7 @@
 package com.dima.financeapp.model;
 
 import com.dima.financeapp.model.dto.UserDto;
+import com.dima.financeapp.model.request.UserEditRequest;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -42,6 +43,16 @@ public class User {
         user.setPassword(userDto.getPassword());
         user.setDatebirth(userDto.getDatebirth());
         user.setGender(userDto.getGender());
+        return user;
+    }
+
+    public static User from(UserEditRequest userEditRequest) {
+        User user = new User();
+        user.setName(userEditRequest.getName());
+        user.setSurname(userEditRequest.getSurname());
+        user.setEmail(userEditRequest.getEmail());
+        user.setDatebirth(userEditRequest.getDatebirth());
+        user.setGender(userEditRequest.getGender());
         return user;
     }
 }

@@ -3,6 +3,7 @@ package com.dima.financeapp.controller;
 import com.dima.financeapp.model.User;
 import com.dima.financeapp.model.dto.UserDto;
 import com.dima.financeapp.model.request.AuthUser;
+import com.dima.financeapp.model.request.UserEditRequest;
 import com.dima.financeapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +29,19 @@ public class UserController {
         List<User> users = userService.getUsers();
         List<UserDto> usersDto = users.stream().map(UserDto::from).collect(Collectors.toList());
         return new ResponseEntity<>(usersDto, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity<UserDto> getUser(@PathVariable final Long id) {
+        User user = userService.getUser(id);
+        return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
+    }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<UserDto> editUser(@PathVariable final Long id,
+                                            @RequestBody final UserEditRequest userEditRequest) {
+        User user = userService.editUser(id, User.from(userEditRequest));
+        return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
     @PostMapping("/register")
