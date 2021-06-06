@@ -1,6 +1,8 @@
 package com.dima.financeapp.model;
 
+import com.dima.financeapp.common.Constants;
 import com.dima.financeapp.model.dto.UserDto;
+import com.dima.financeapp.model.request.RegisterUser;
 import com.dima.financeapp.model.request.UserEditRequest;
 import lombok.Data;
 
@@ -19,7 +21,7 @@ public class User {
     private String name;
     private String surname;
     private String email;
-    @Column(name="photo_url")
+    @Column(name = "photo_url")
     private String photoUrl;
     private String password;
     private String datebirth;
@@ -46,6 +48,18 @@ public class User {
         user.setPassword(userDto.getPassword());
         user.setDatebirth(userDto.getDatebirth());
         user.setGender(userDto.getGender());
+        return user;
+    }
+
+    public static User from(RegisterUser registerUser) {
+        User user = new User();
+        user.setName(registerUser.getName());
+        user.setSurname(Constants.EMPTY_STRING);
+        user.setEmail(registerUser.getEmail());
+        user.setPhotoUrl(Constants.EMPTY_STRING);
+        user.setPassword(registerUser.getPassword());
+        user.setDatebirth(Constants.EMPTY_STRING);
+        user.setGender(Constants.EMPTY_STRING);
         return user;
     }
 

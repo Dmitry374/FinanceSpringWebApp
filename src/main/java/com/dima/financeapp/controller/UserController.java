@@ -3,6 +3,7 @@ package com.dima.financeapp.controller;
 import com.dima.financeapp.model.User;
 import com.dima.financeapp.model.dto.UserDto;
 import com.dima.financeapp.model.request.AuthUser;
+import com.dima.financeapp.model.request.RegisterUser;
 import com.dima.financeapp.model.request.UserEditRequest;
 import com.dima.financeapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> registerUser(@RequestBody final UserDto userDto) {
-        User user = userService.addUser(User.from(userDto));
+    public ResponseEntity<UserDto> registerUser(@RequestBody final RegisterUser registerUser) {
+        User user = userService.addUser(User.from(registerUser));
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
