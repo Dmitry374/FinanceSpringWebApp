@@ -55,4 +55,10 @@ public class UserController {
         User user = userService.getUserByEmailAndPassword(authUser.getEmail(), authUser.getPassword());
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
+
+    @PostMapping("/sign_in")
+    public ResponseEntity<UserDto> signInUser(@RequestParam("email") String email) {
+        User user = userService.getUserByEmail(email);
+        return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
+    }
 }
