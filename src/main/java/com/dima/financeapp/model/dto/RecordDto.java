@@ -20,6 +20,7 @@ public class RecordDto {
     private int color;
     private int icon;
     private long date;
+    private String info;
 
     public static RecordDto from(Record record) {
         RecordDto recordDto = new RecordDto();
@@ -35,6 +36,7 @@ public class RecordDto {
         long millis = zdt.toInstant().toEpochMilli();
 
         recordDto.setDate(millis);
+        recordDto.setInfo(record.getInfo());
         return recordDto;
     }
 }

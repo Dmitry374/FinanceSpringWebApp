@@ -11,5 +11,6 @@ public class RecordWithBillId {
     private String billName;
     private int icon;
     private Long date;
+    private String info;
     private Long billId;
 }

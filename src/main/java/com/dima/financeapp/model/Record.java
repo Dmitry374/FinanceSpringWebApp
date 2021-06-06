@@ -24,6 +24,7 @@ public class Record {
     private String billName;
     private int icon;
     private LocalDateTime date;
+    private String info;
     @Transient
     @ManyToOne
     private Bill bill;
@@ -36,6 +37,7 @@ public class Record {
         record.setBillName(recordDto.getBillName());
         record.setIcon(recordDto.getIcon());
         record.setDate(millisecondsToLocalDateTime(recordDto.getDate()));
+        record.setInfo(recordDto.getInfo());
         return record;
     }
 
@@ -47,6 +49,7 @@ public class Record {
         record.setBillName(recordWithBillId.getBillName());
         record.setIcon(recordWithBillId.getIcon());
         record.setDate(millisecondsToLocalDateTime(recordWithBillId.getDate()));
+        record.setInfo(recordWithBillId.getInfo());
         return record;
     }
 
