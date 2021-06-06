@@ -19,6 +19,8 @@ public class User {
     private String name;
     private String surname;
     private String email;
+    @Column(name="photo_url")
+    private String photoUrl;
     private String password;
     private String datebirth;
     private String gender;
@@ -40,6 +42,7 @@ public class User {
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setEmail(userDto.getEmail());
+        user.setPhotoUrl(userDto.getPhotoUrl());
         user.setPassword(userDto.getPassword());
         user.setDatebirth(userDto.getDatebirth());
         user.setGender(userDto.getGender());
@@ -51,6 +54,7 @@ public class User {
         user.setName(userEditRequest.getName());
         user.setSurname(userEditRequest.getSurname());
         user.setEmail(userEditRequest.getEmail());
+        user.setPhotoUrl(userEditRequest.getPhotoUrl());
         user.setDatebirth(userEditRequest.getDatebirth());
         user.setGender(userEditRequest.getGender());
         return user;

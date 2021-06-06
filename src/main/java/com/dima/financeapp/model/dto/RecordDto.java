@@ -1,6 +1,7 @@
 package com.dima.financeapp.model.dto;
 
 import com.dima.financeapp.model.Record;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,8 @@ public class RecordDto {
     private String name;
     private float sum;
     private String type;
+    @JsonProperty("bill_name")
+    private String billName;
     private int color;
     private int icon;
     private long date;
@@ -24,7 +27,7 @@ public class RecordDto {
         recordDto.setName(record.getName());
         recordDto.setSum(record.getSum());
         recordDto.setType(record.getType());
-        recordDto.setColor(record.getColor());
+        recordDto.setBillName(record.getBillName());
         recordDto.setIcon(record.getIcon());
 
         LocalDateTime ldt = record.getDate();

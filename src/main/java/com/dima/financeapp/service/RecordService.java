@@ -53,7 +53,7 @@ public class RecordService {
         recordToEdit.setName(record.getName());
         recordToEdit.setSum(record.getSum());
         recordToEdit.setType(record.getType());
-        recordToEdit.setColor(record.getColor());
+        recordToEdit.setBillName(record.getBillName());
         recordToEdit.setIcon(record.getIcon());
         recordToEdit.setDate(record.getDate());
         return recordToEdit;

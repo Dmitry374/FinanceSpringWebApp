@@ -36,6 +36,7 @@ public class UserService {
         User userToEdit = getUser(id);
         userToEdit.setName(user.getName());
         userToEdit.setSurname(user.getSurname());
+        userToEdit.setPhotoUrl(user.getPhotoUrl());
         userToEdit.setDatebirth(user.getDatebirth());
         userToEdit.setGender(user.getGender());
         return userToEdit;

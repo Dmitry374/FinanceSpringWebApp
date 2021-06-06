@@ -20,7 +20,8 @@ public class Record {
     private String name;
     private float sum;
     private String type;
-    private int color;
+    @Column(name = "bill_name")
+    private String billName;
     private int icon;
     private LocalDateTime date;
     @Transient
@@ -32,7 +33,7 @@ public class Record {
         record.setName(recordDto.getName());
         record.setSum(recordDto.getSum());
         record.setType(recordDto.getType());
-        record.setColor(recordDto.getColor());
+        record.setBillName(recordDto.getBillName());
         record.setIcon(recordDto.getIcon());
         record.setDate(millisecondsToLocalDateTime(recordDto.getDate()));
         return record;
@@ -43,7 +44,7 @@ public class Record {
         record.setName(recordWithBillId.getName());
         record.setSum(recordWithBillId.getSum());
         record.setType(recordWithBillId.getType());
-        record.setColor(recordWithBillId.getColor());
+        record.setBillName(recordWithBillId.getBillName());
         record.setIcon(recordWithBillId.getIcon());
         record.setDate(millisecondsToLocalDateTime(recordWithBillId.getDate()));
         return record;

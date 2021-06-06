@@ -8,6 +8,7 @@ public class UserEditRequest {
     private String name;
     private String surname;
     private String email;
+    private String photoUrl;
     private String datebirth;
     private String gender;
 }

@@ -15,6 +15,8 @@ public class UserDto {
     private String name;
     private String surname;
     private String email;
+    @JsonProperty("photo_url")
+    private String photoUrl;
     private String password;
     private String datebirth;
     private String gender;
@@ -27,6 +29,7 @@ public class UserDto {
         userDto.setName(user.getName());
         userDto.setSurname(user.getSurname());
         userDto.setEmail(user.getEmail());
+        userDto.setPhotoUrl(user.getPhotoUrl());
         userDto.setPassword(user.getPassword());
         userDto.setDatebirth(user.getDatebirth());
         userDto.setGender(user.getGender());
