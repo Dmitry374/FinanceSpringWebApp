@@ -9,7 +9,6 @@ public class RecordWithBillId {
     private float sum;
     private String type;
     private String billName;
-    private int color;
     private int icon;
     private Long date;
     private Long billId;
