@@ -51,6 +51,12 @@ public class UserController {
         return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
     }
 
+    @PostMapping("/register/full")
+    public ResponseEntity<UserDto> registerUserFull(@RequestBody final UserDto userDto) {
+        User user = userService.addUser(User.from(userDto));
+        return new ResponseEntity<>(UserDto.from(user), HttpStatus.OK);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<UserDto> loginUser(@RequestBody final AuthUser authUser) {
         User user = userService.getUserByEmailAndPassword(authUser.getEmail(), authUser.getPassword());
