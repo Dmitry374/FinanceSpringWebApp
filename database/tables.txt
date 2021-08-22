@@ -1,0 +1,62 @@
+finance_db
+
+create table if not exists users
+(
+	id serial not null primary key,
+	name VARCHAR(50),
+	surname VARCHAR(50),
+	email VARCHAR(50) UNIQUE,
+	photo_url VARCHAR,
+	password VARCHAR(50),
+	datebirth VARCHAR(20),
+	gender VARCHAR(10)
+);
+
+create table if not exists bills
+(
+    id serial not null primary key,
+    name VARCHAR(50),
+    amount float,
+    color INT,
+    user_id int references users(id) ON DELETE CASCADE
+);
+
+create table if not exists records
+(
+    id serial not null primary key,
+    name VARCHAR(50),
+    sum float,
+    type VARCHAR(50),
+    bill_name VARCHAR(50),
+    icon INT,
+    date timestamp,
+    info VARCHAR,
+    bill_id int references bills(id) ON DELETE CASCADE
+);
+
+
+
+SELECT * FROM users;
+
+INSERT INTO bills (name, amount, color, user_id) VALUES ('New Bill', 5000, 1, 1);
+
+
+SELECT * FROM bills;
+
+UPDATE bills SET name = 'Дельта' WHERE id = 72;
+
+SELECT * FROM bills WHERE user_id = 2;
+
+INSERT INTO records (name, sum, type, icon, date, bill_id) VALUES ('Record1', 550, 'Доход', 1, '2020-11-24 14:30', 1);
+INSERT INTO records (name, sum, type, icon, date, bill_id) VALUES ('Record2', 750, 'Расход', 2, '2021-05-14 11:30', 1);
+
+SELECT * FROM records;
+
+UPDATE records SET icon = 2131230852 WHERE id = 81;
+UPDATE records SET name = 'Доходы' WHERE id = 81;
+
+SELECT * FROM records ORDER BY id DESC LIMIT 5;
+
+drop table users;
+drop table bills;
+drop table records;
